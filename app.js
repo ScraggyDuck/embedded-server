@@ -6,6 +6,7 @@ const path = require('path');
 
 //Import Routes
 const viewRouter = require('./routes/view.route');
+const userRouter = require('./routes/user.route');
 
 //Config env
 dotenv.config('.env');
@@ -30,10 +31,7 @@ app.use(cors());
 
 //2. ROUTES
 app.use('/', viewRouter);
-app.post('/data', function (req, res) {
-  res.writeHead(200);
-  console.log(req.body);
-});
+app.use('/user', userRouter);
 
 //Check Unhandled Routes
 app.all('*', (req, res, next) => {
