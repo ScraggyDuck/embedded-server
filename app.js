@@ -30,6 +30,10 @@ app.use(cors());
 
 //2. ROUTES
 app.use('/', viewRouter);
+app.post('/data', function (req, res) {
+  res.writeHead(200);
+  console.log(req.body);
+});
 
 //Check Unhandled Routes
 app.all('*', (req, res, next) => {
