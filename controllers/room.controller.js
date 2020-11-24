@@ -22,26 +22,24 @@ exports.setRoomData = async (req, res, next) => {
   const room = await Room.findOne({ NameDevice });
   if (room) {
     room.data.push(roomData);
-    const roomUpdated = await Room.findOneAndUpdate({ NameDevice }, room, {
+    await Room.findOneAndUpdate({ NameDevice }, room, {
       new: true,
       runValidators: true,
     });
     res.json(
       {
         status: 'success',
-        data: roomUpdated,
       },
       200
     );
   } else {
-    const newRoom = await Room.create({
+    await Room.create({
       NameDevice,
       data: [roomData],
     });
     res.json(
       {
         status: 'success',
-        data: newRoom,
       },
       200
     );
